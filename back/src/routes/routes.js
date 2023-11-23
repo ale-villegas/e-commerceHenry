@@ -1,10 +1,15 @@
 const {Router} = require('express');
-const { getGuitarras, getGuitarrasById } = require('../service/productoService');
-
+const { getGuitarras, getGuitarrasById, getGuitarrasByFilter } = require('../service/productoService');
+const { getCategorias } = require('../service/CategoriaService');
 const router = Router();
 
 router.get('/guitarras', getGuitarras)
 router.get('/guitarras/:id', getGuitarrasById) 
+router.get('/guitarras/categorias/:categoria', getGuitarrasByFilter)
+router.get('/categorias', getCategorias)
+
+
+
 
 module.exports = router
 

@@ -1,7 +1,8 @@
 const guitarras = require('./../utils/data');
 const {Categorias, Productos, User} = require('../DB_connection');
 
-const axios = require('axios')
+const axios = require('axios');
+
 
 const getGuitarras = async (req, res) => {
     try {
@@ -26,5 +27,15 @@ const getGuitarrasById = async (req, res) => {
     return guitarras
 }
 
+const getGuitarrasByFilter = async (req, res) => {
+    try {
+        const data = await Productos.findAll( {where:{ CategoriasId: req.params.categoria }  });
+        
+        res.json({guitarras:data})
+    } catch (error) {
+        console.log(error)
+    }
+    return guitarras
+}
 
-module.exports = {getGuitarras, getGuitarrasById};
+module.exports = {getGuitarras, getGuitarrasById, getGuitarrasByFilter};

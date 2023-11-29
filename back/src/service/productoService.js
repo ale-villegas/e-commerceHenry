@@ -8,23 +8,37 @@ const getGuitarras = async (req, res) => {
     try {
         const data = await Productos.findAll();
         
+        
         res.json({guitarras:data})
     } catch (error) {
         console.log(error)
     }
-    return guitarras
+    
 }
 
 
 const getGuitarrasById = async (req, res) => {
+
+    const {id} = req.params
     try {
-        const data = await Productos.findByPk(req.params.id);
+        const data = await Productos.findByPk(id);
+
+        if(!data){
+            res.status(404).json({
+                error: 'Producto no encontrado',
+              });
+              return;
+        }
+    
+        res.status(200).json(data)
         
-        res.json({guitarra:data})
+       
     } catch (error) {
-        console.log(error)
+        res.status(500).json({
+            error: "Error en el servidor"
+        })
     }
-    return guitarras
+    
 }
 
 const getGuitarrasByFilter = async (req, res) => {

@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {guitarras} from '../data/products.js';
+import {useEffect, useState} from 'react';
+
 import './ProductCard.css'
 import axios from "axios"
 import ProductCard from './ProductCard.jsx';
 
-const initialState = guitarras;
+
 
 const ProductList = () => {
 
@@ -12,7 +12,7 @@ const ProductList = () => {
 
   const getGuitarras=()=>{
     axios.get(`http://localhost:3001/guitarras`).then(({data})=>{
-      console.log(data)
+      
       setProductos(data.guitarras)
     })
   }

@@ -15,8 +15,7 @@ const ProductDetail = () => {
     data: producto,
   } = useFetch(getProductById, productId); 
 
- 
-console.log(producto)
+
   return (
     <>
          <div className="box-product">

@@ -17,8 +17,8 @@ const useFetch = (service, id) => {
         setData(response.data);
       }
     } catch (error) {
-        
-      setErrors(error.message);
+       
+      setErrors(error.response.data.error);
     } finally {
       setIsLoading(false);
     }

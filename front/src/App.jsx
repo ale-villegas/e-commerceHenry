@@ -19,18 +19,16 @@ const guitarrasReducer = (state, action) => {
 const initialState = [];
 
 const App = () => {
-  const [state, distpach] = useReducer(guitarrasReducer, initialState);
+  const [state, dispatch] = useReducer(guitarrasReducer, initialState);
   const [resultados, setResultados] = useState(initialState);
 
   const getGuitarras = async () => {
     try {
       const { data } = await axios.get(`http://localhost:3001/guitarras`);
-      console.log(data)
-      const response = await data.guitarras;
-      console.log(response);
+      const response = data.guitarras;
       setResultados(response);
 
-      await distpach({
+      dispatch({
         type: "GET_GUITARRAS",
         payload: response,
       });
@@ -42,18 +40,17 @@ const App = () => {
   useEffect(() => {
     getGuitarras();
   }, []);
-// ToDo: Las rutas de home y about faltan... 
-  return ( 
+  // ToDo: Las rutas de home y about faltan...
+  return (
     <>
-    
       <Router>
-        <Nav distpach={distpach} resultados={resultados} />
+        <Nav dispatch={dispatch} resultados={resultados} />
 
         <Routes>
           <Route
             exact
             path="/"
-            element={<ProductList distpach={distpach} productos={state} />}
+            element={<ProductList dispatch={dispatch} productos={state} />}
           />
           <Route
             exact

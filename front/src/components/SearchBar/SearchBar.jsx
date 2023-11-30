@@ -1,11 +1,11 @@
 import style from "./SearchBar.module.css";
 import { useState, useEffect, useRef } from "react";
-const SearchBar = ({ distpach, resultados }) => {
+const SearchBar = ({ dispatch, resultados }) => {
   const [busqueda, setBusqueda] = useState("");
   const inputRef = useRef(null);
 
   useEffect(() => {
-    distpach({
+    dispatch({
       type: "GET_GUITARRAS",
       payload: resultados.filter(
         (guitarra) =>

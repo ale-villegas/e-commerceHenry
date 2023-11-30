@@ -26,6 +26,7 @@ const getGuitarras = async (req, res) => {
 
 
 const getGuitarrasById = async (req, res) => {
+    console.log("getGuitarrasById")
     try {
         const data = await Productos.findByPk(req.params.id);
         res.json({guitarra:data})
@@ -37,20 +38,30 @@ const getGuitarrasById = async (req, res) => {
 
 const getGuitarrasByFilter = async (req, res) => {
     try {
-        console.log(req)
+        // Obtén el arreglo de categorías desde los parámetros de la solicitud
+        const categorias = req.query.categorias ? JSON.parse(req.query.categorias) : [];
+
         const data = await Productos.findAll({
             where: {
-              CategoriasId: {
-                [Sequelize.Op.in]: req.params.categoria.split(',').map(Number)
-              }
+                CategoriasId: {
+                    [Sequelize.Op.in]: categorias,
+                },
+            },
+            include: [{
+                model: Categorias,
+                as: 'Categoria',
+                attributes: ['nombre']
+            }],
+            attributes: {
+                exclude: ['CategoriasId']
             }
-          });
-        res.json({guitarras:data})
+        });
+
+        res.json({ guitarras: data });
     } catch (error) {
-        
-        res.json({error: error, msg: 'No se encontraron guitarras'})
+        // console.log(error);
+        res.status(500).json({ error: 'Error al obtener las guitarras por filtro' });
     }
-    return guitarras
-}
+};
 
 module.exports = {getGuitarras, getGuitarrasById, getGuitarrasByFilter};

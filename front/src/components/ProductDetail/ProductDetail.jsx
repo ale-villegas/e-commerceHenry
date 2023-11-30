@@ -1,3 +1,4 @@
+import React from 'react'
 import { useParams } from "react-router-dom";
 
 import { Button } from "@mui/material";
@@ -12,9 +13,9 @@ const ProductDetail = () => {
   const {
     isLoading,
     errors,
-    data: producto,
+    data: product,
   } = useFetch(getProductById, productId); 
-
+console.log(product)
 
   return (
     <>
@@ -22,15 +23,18 @@ const ProductDetail = () => {
       {isLoading ? (
     
         <h1>Cargando ...</h1>
-      ) : producto ? (
+      ) : product ? (
        <>
+   
+
           <div>
-            <h1>{producto.nombre}</h1>
-            <img src={producto.image} alt={producto.descripcion} />
+            <h1>{product.nombre}</h1>
+            <img src={product.image}/>
+           { console.log("Ruta de la imagen:", product.image)}
           </div>
           <div>
-            <p>{producto.descripcion}</p>
-            <p>Precio : $ {producto.precio}</p>
+            <p>{product.descripcion}</p>
+            <p>Precio : $ {product.precio}</p>
             <Button variant="contained">Agregar al carrito</Button>
           </div>
           </>

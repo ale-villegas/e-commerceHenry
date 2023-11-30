@@ -10,7 +10,7 @@ const ProductCard = (props) => {
     <li key={product.id} className="guitar-card">
      
         <div className="card-content">
-        <Link to={`/product/${product.id}`}>  <p className="product-name">{product.nombre}</p></Link>     
+        <Link to={`/${product.id}`}>  <p className="product-name">{product.nombre}</p></Link>     
           <p className="product-description">{product.descripcion}</p>
           <p className="product-price">Precio: ${product.precio}</p>
           <p className="product-category">Categoría: {product.categorias}</p>

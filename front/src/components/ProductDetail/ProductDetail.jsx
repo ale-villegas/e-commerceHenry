@@ -1,47 +1,40 @@
-import React from 'react'
+import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { Button } from "@mui/material";
-import useFetch from "../../hooks/useFetch";
-import getProductById from "../../utils/getProductById";
-import "../ProductDetail/ProductDetail.css"
 
+import getProductById from "../../utils/getProductById";
+import "../ProductDetail/ProductDetail.css";
+import { ACTION_TYPES, GlobalContext } from "../../context/GlobalContext";
 
 const ProductDetail = () => {
   const { productId } = useParams();
 
-  const {
-    isLoading,
-    errors,
-    data: product,
-  } = useFetch(getProductById, productId); 
-console.log(product)
+  const { state, dispatch } = useContext(GlobalContext);
 
+  useEffect(() => {
+    getProductById(productId).then((data) => {
+      dispatch({
+        type: ACTION_TYPES.GET_PRODUCT_BY_ID,
+        payload: data,
+      });
+    });
+  }, []);
   return (
     <>
-         <div className="box-product">
-      {isLoading ? (
-    
-        <h1>Cargando ...</h1>
-      ) : product ? (
-       <>
-   
-
+      <div className="box-product">
+        <>
           <div>
-            <h1>{product.nombre}</h1>
-            <img src={product.image}/>
-           { console.log("Ruta de la imagen:", product.image)}
+            <h1>{state.productById.nombre}</h1>
+            <img src={state.productById.image} />
           </div>
           <div>
-            <p>{product.descripcion}</p>
-            <p>Precio : $ {product.precio}</p>
+            <p>{state.productById.descripcion}</p>
+            <p>Precio : $ {state.productById.precio}</p>
             <Button variant="contained">Agregar al carrito</Button>
           </div>
-          </>
-      ) : (
-        <p>{errors}</p>
-      )}
-       </div>
+        </>
+      </div>
     </>
   );
 };

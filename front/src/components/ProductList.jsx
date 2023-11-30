@@ -1,39 +1,31 @@
-import {useEffect, useState} from 'react';
+import { useContext, useEffect} from "react";
 
-import './ProductCard.css'
-import axios from "axios"
-import ProductCard from './ProductCard.jsx';
+import "./ProductCard.css";
 
-
+import ProductCard from "./ProductCard.jsx";
+import { ACTION_TYPES, GlobalContext } from "../context/GlobalContext.jsx";
+import getGuitarras from "../utils/getGuittaras.js";
 
 const ProductList = () => {
+  const { state, dispatch } = useContext(GlobalContext);
 
-  const [productos, setProductos] = useState([])
-
-  const getGuitarras=()=>{
-    axios.get(`http://localhost:3001/guitarras`).then(({data})=>{
-      
-      setProductos(data.guitarras)
-    })
-  }
-
-useEffect(
-  () => {
-    getGuitarras();
-
-  },[]
-)
-
+  useEffect(() => {
+    getGuitarras().then((data) => {
+      dispatch({
+        type: ACTION_TYPES.GET_ALL_PRODUCTS,
+        payload: data,
+      });
+    });
+  }, []);
 
   return (
     <div>
       <h1>Lista de Productos</h1>
       <ul className="guitar-cards">
-  {productos.map(product => (
-    <ProductCard key = {product.id} product = {product}/>
-  ))}
-</ul>
-
+        {state.allProducts.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </ul>
     </div>
   );
 };

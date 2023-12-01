@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { Button } from "@mui/material";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
 
 import getProductById from "../../utils/getProductById";
 import "../ProductDetail/ProductDetail.css";
@@ -21,21 +21,38 @@ const ProductDetail = () => {
     });
   }, []);
   return (
-    <>
-      <div className="box-product">
-        <>
-          <div>
-            <h1>{state.productById.nombre}</h1>
-            <img src={state.productById.image} />
-          </div>
-          <div>
-            <p>{state.productById.descripcion}</p>
-            <p>Precio : $ {state.productById.precio}</p>
+    <Container>
+      <Box sx={{
+        display: "flex",
+        gap: "20px",
+        justifyContent: "space-between",
+        p: "30px",
+        border: "1px solid ",
+        borderRadius: "5px",
+        margin: "15px"
+      }}>
+        
+        <Box sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between"
+          }}>
+            <Typography variant= "h3">{state.productById.nombre}</Typography>
+            <img width="200px" src={state.productById.image} />
+          </Box>
+          <Box sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-around"
+          }}>
+            
+            <Typography><b>Descripcion:</b> <br/>{state.productById.descripcion}</Typography>
+            <Typography>Precio : $ {state.productById.precio}</Typography>
             <Button variant="contained">Agregar al carrito</Button>
-          </div>
-        </>
-      </div>
-    </>
+          </Box>
+        
+      </Box>
+    </Container>
   );
 };
 

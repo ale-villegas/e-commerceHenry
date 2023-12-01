@@ -4,8 +4,8 @@ const { getCategorias } = require('../service/CategoriaService');
 const router = Router();
 
 router.get('/guitarras', getGuitarras)
-router.get('/guitarras/:id', getGuitarrasById) 
-router.get('/guitarras/categorias/:categoria', getGuitarrasByFilter)
+router.get('/guitarras/filtros', getGuitarrasByFilter)
+router.get('/guitarras/:id', getGuitarrasById)
 router.get('/categorias', getCategorias)
 
 

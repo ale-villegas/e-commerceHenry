@@ -1,5 +1,6 @@
 CREATE DATABASE luthiers;
 
+INSERT INTO "Categorias" (id, nombre) VALUES (1, 'electrica'),  (2,'acustica'), (3, 'criolla');
 
 INSERT INTO "Productos" (id, nombre, descripcion, "CategoriasId", precio, image) VALUES
 (1, 'Fender Stratocaster', 'Guitarra eléctrica icónica con cuerpo de aliso y tres pastillas simples.', 1, 1200, 'images/Electricas/fender_stratocaster.jpeg'),
@@ -29,4 +30,3 @@ INSERT INTO "Productos" (id, nombre, descripcion, "CategoriasId", precio, image)
 (25, 'Cordoba C7', 'Guitarra clásica con tapa de abeto y aros y fondo de palisandro.', 3, 400, 'images/Criollas/cordoba_c7.jpeg');
 
 
-INSERT INTO "Categorias" (id, nombre) VALUES (1, 'electrica'),  (2,'acustica'), (3, 'criolla');

@@ -1,13 +1,16 @@
+
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { Link } from 'react-router-dom';
 import './ProductCard.css'
 
+
 const ProductCard = (props) => {
-    const {product} = props;
+  const { product } = props;
 
   return (
     <li key={product.id} className="guitar-card">
+
      
         <div className="card-content">
         <Link to={`/${product.id}`}>  <p className="product-name">{product.nombre}</p></Link>     
@@ -17,8 +20,9 @@ const ProductCard = (props) => {
           <img className="product-image" src={product.image} alt={product.nombre} />
         </div> 
         
-    </li>
-  )
-}
 
-export default ProductCard
+    </li>
+  );
+};
+
+export default ProductCard;

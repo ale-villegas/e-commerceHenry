@@ -1,3 +1,4 @@
+
 import { useContext, useEffect} from "react";
 
 import "./ProductCard.css";
@@ -26,6 +27,7 @@ const ProductList = () => {
           <ProductCard key={product.id} product={product} />
         ))}
       </ul>
+
     </div>
   );
 };

@@ -7,6 +7,7 @@ const axios = require('axios');
 
 const getGuitarras = async (req, res) => {
     try {
+
         const data = await Productos.findAll({
             include: [{
                 model: Categorias,
@@ -17,23 +18,26 @@ const getGuitarras = async (req, res) => {
                 exclude: ['CategoriasId']
             }
         });
+
         res.json({guitarras:data})
     } catch (error) {
         res.json({error: error, msg: 'No se encontraron guitarras'})
     }
-    return guitarras
+    
 }
 
 
 const getGuitarrasById = async (req, res) => {
+
     console.log("getGuitarrasById")
     try {
         const data = await Productos.findByPk(req.params.id);
         res.json({guitarra:data})
     } catch (error) {
         res.json({error: error, msg: `No se encontró la guitarra con id ${req.params.id}`})
+
     }
-    return guitarras
+    
 }
 
 const getGuitarrasByFilter = async (req, res) => {

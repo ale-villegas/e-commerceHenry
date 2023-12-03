@@ -4,12 +4,18 @@ const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 const CategoriasModel = require('./models/Categorias');
 const ProductosModel = require('./models/Productos');
 const UserModel = require('./models/User');
+const {DB_DEPLOY} = process.env;
 
+
+
+// const sequelize = new Sequelize(
+//    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/luthiers`,
+//    { logging: false, native: false }
+// );
 const sequelize = new Sequelize(
-   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/luthiers`,
+   DB_DEPLOY != undefined ? DB_DEPLOY : `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/luthiers`,
    { logging: false, native: false }
 );
-
 
 CategoriasModel(sequelize);
 ProductosModel(sequelize);

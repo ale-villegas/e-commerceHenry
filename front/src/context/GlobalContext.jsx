@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 
 export const GlobalContext = createContext();
 
@@ -6,6 +6,7 @@ export const GlobalContext = createContext();
 export const ACTION_TYPES = {
   GET_ALL_PRODUCTS: "GET_ALL_PRODUCTS",
   GET_PRODUCT_BY_ID: "GET_PRODUCT_BY_ID",
+  GET_FILTER_GUITARRAS: "GET_FILTER_GUITARRAS"
 };
 
 export const GlobalContextProvider = (props) => {
@@ -22,18 +23,24 @@ export const GlobalContextProvider = (props) => {
       case ACTION_TYPES.GET_PRODUCT_BY_ID:
         return { ...state, productById: payload };
 
+      case ACTION_TYPES.GET_FILTER_GUITARRAS:
+        return { ...state, allProducts: payload };
+
       default:
         return state;
     }
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [resultados, setResultados] = useState(state.allProducts);
 
   return (
     <GlobalContext.Provider
       value={{
         state,
         dispatch,
+        resultados,
+        setResultados,
       }}
     >
       {props.children}

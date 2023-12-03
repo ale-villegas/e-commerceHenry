@@ -3,7 +3,7 @@ const getProductById = async (id) => {
     
     const response = await axios.get(`http://localhost:3001/guitarras/${id}`)
 
-    return response.data
+    return response.data.guitarra
 }
 
 export default getProductById

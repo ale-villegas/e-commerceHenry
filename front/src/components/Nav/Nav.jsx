@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ShoppingCart from '../ShoppingCart';
 
 import SearchBar from '../SearchBar/SearchBar';
 import {Link} from 'react-router-dom';
 import style from './Nav.module.css';
+import { GlobalContext } from '../../context/GlobalContext';
 
 const Nav = ({ dispatch, resultados }) => {
 
-    const itemCount = 1; //Enlazar cantidades
+  const { state } = useContext(GlobalContext);  
+  const itemCount = state.cartItems.length; //Enlazar cantidades
     
     return (
     <div className={style.Links}>

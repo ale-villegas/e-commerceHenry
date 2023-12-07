@@ -8,11 +8,13 @@ export const ACTION_TYPES = {
   GET_PRODUCT_BY_ID: "GET_PRODUCT_BY_ID",
   GET_FILTER_GUITARRAS: "GET_FILTER_GUITARRAS"
 };
+export const ADD_TO_CART = "ADD_TO_CART";
 
 export const GlobalContextProvider = (props) => {
   const initialState = {
     allProducts: [],
     productById: {},
+    cartItems: [],
   };
   const reducer = (state, action) => {
     const { payload, type } = action;
@@ -25,6 +27,10 @@ export const GlobalContextProvider = (props) => {
 
       case ACTION_TYPES.GET_FILTER_GUITARRAS:
         return { ...state, allProducts: payload };
+
+      case ACTION_TYPES.ADD_TO_CART:
+        console.log("Adding to cart:", payload);
+        return { ...state, cartItems: [...state.cartItems, action.payload],};
 
       default:
         return state;

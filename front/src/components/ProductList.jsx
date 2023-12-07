@@ -6,10 +6,21 @@ import ProductCard from "./ProductCard.jsx";
 import { ACTION_TYPES, GlobalContext } from "../context/GlobalContext.jsx";
 import getGuitarras from "../utils/getGuittaras.js";
 import getGuitarrasByFilter from "../utils/getGuitarrasByFilter.js"
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Divider from '@mui/material/Divider';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
+
 
 
 const ProductList = () => {
   const { state, dispatch, setResultados } = useContext(GlobalContext);
+  const [ordenar, setordenar] =useState(getGuitarras)
   
   const [filtros, setFiltros] = useState({
     1: true,
@@ -36,6 +47,43 @@ const ProductList = () => {
 
   };  
 
+
+  const Ordenarasc = () =>{
+
+    const productoscopia = state.allProducts
+    productoscopia.sort((a, b) => {
+      return a.precio - b.precio
+     })
+
+     dispatch({
+      type: "GET_FILTER_GUITARRAS",
+      payload: productoscopia,
+    });
+
+     setResultados(productoscopia) 
+ 
+   }
+
+  const Ordenardes = () => {
+
+    const productoscopia = state.allProducts
+    productoscopia.sort((a, b) => {
+      return b.precio - a.precio
+     })
+
+     dispatch({
+      type: "GET_FILTER_GUITARRAS",
+      payload: productoscopia,
+    });
+
+     setResultados(productoscopia)
+ 
+  }
+
+  
+  
+
+
   useEffect(() => {
     getGuitarras().then((data) => {
       dispatch({
@@ -53,36 +101,60 @@ const ProductList = () => {
           {/* Filtros */}
           <fieldset>
             <legend>Categorías</legend>
-            <ul>
+            <Stack
+             direction="row"
+             divider={<Divider orientation="vertical" flexItem />}
+             spacing={2}
+            >
+
+
+              <div>
+                <ul>
               <li>
-                <input
-                  type="checkbox"
-                  name="1"
-                  checked={filtros["1"]}
-                  onChange={handleCheckboxChange}
-                />
-                <label>Eléctricas</label>
+              <FormControlLabel
+                type="checkbox"
+                name="1"
+                checked={filtros["1"]}
+                onChange={handleCheckboxChange}
+                control={<Checkbox defaultChecked />} label="Eléctricas" />
               </li>
               <li>
-                <input
-                  type="checkbox"
-                  name="2"
-                  checked={filtros["2"]}
-                  onChange={handleCheckboxChange}
-                />
-                <label>Acústicas</label>
+              <FormControlLabel
+               type="checkbox"
+               name="2"
+               checked={filtros["2"]}
+               onChange={handleCheckboxChange}
+               control={<Checkbox defaultChecked />} label="Acústicas" />
               </li>
               <li>
-                <input
-                  type="checkbox"
-                  name="3"
-                  checked={filtros["3"]}
-                  onChange={handleCheckboxChange}
-                />
-                <label>Criollas</label>
+              <FormControlLabel
+               type="checkbox"
+               name="3"
+               checked={filtros["3"]}
+               onChange={handleCheckboxChange}
+               control={<Checkbox defaultChecked />} label="Criollas" />
               </li>
             </ul>
-            <button onClick={handleFiltrarClick}>Filtrar</button>
+            <Box sx={{ '& button': { m: 1 } }}>
+            <Button onClick={handleFiltrarClick} variant="outlined" size="small">Filtrar</Button>
+            </Box>
+            </div>
+
+
+            <div>
+            <h3>Ordenar por precio</h3>
+            <Box sx={{ '& button': { m: 1 } }}>
+            <Button onClick={Ordenarasc} variant="outlined" size="small">Ascendente</Button>
+            <Button onClick={Ordenardes} variant="outlined" size="small">Descendente</Button>
+            </Box>
+            </div>
+
+
+            </Stack>
+            
+            
+           
+           
           </fieldset>
         </div>
       <ul className="guitar-cards">

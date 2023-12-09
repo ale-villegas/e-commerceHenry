@@ -1,42 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ShoppingCart from './ShoppingCart.jsx';
-import LoginButton from '../LogingButton';  
-import LogoutButton from '../LogoutButton'; 
-import { AppBar, Toolbar, Typography, Container } from '@mui/material';
-
 import SearchBar from '../SearchBar/SearchBar';
-import {Link} from 'react-router-dom';
-//import style from '../Nav/Nav.module.css';
-
-
+import { AppBar, Toolbar, Typography, Container, IconButton, ThemeProvider } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-
-
+import Profile from '../Profile.jsx';
+import AccountMenu from '../AccountMenu.jsx'; // Importa el nuevo componente
 
 const Nav = () => {
+  const [menuOpen, setMenuOpen] = useState(false); // Estado para controlar la apertura/cierre del menú
+  const itemCount = 1; // Enlazar cantidades
+  const { isAuthenticated, isLoading, loginWithRedirect, logout} = useAuth0();
 
-    const itemCount = 1; //Enlazar cantidades
-    const { isAuthenticated } = useAuth0();
-    
-    return (
-      <AppBar position="static">
-        <Container>
-          <Toolbar >
-            <Typography  variant="h8" component={Link} to="/home" sx={{ flexGrow: 1, textDecoration: 'none', color: 'inherit' }}>
-              Home
-            </Typography>
-            <Typography variant="h8" component={Link} to="/about" sx={{ textDecoration: 'none', color: 'inherit' }}>
-              About
-            </Typography>
-            <ShoppingCart itemCount={itemCount} />
-            <SearchBar onSearch={() => console.log('OnSearchBar')} />
-  
-            {/* Renderiza el componente de acuerdo al estado de autenticación */}
-            {isAuthenticated ? <LogoutButton /> : <LoginButton />}
-          </Toolbar>
-        </Container>
-      </AppBar>
-    );
+  if (isLoading) return <h1>Loading...</h1>;
+
+  // Función para cerrar el menú
+  const handleClose = () => {
+    setMenuOpen(false);
+  };
+
+
+
+  return (
+    <AppBar position="static">
+      <Container>
+        <Toolbar>
+          <Typography variant="h8" component={Link} to="/home" sx={{ flexGrow: 1, textDecoration: 'none', color: 'inherit' }}>
+            Home
+          </Typography>
+          <Typography variant="h8" component={Link} to="/about" sx={{ textDecoration: 'none', color: 'inherit' }}>
+            About
+          </Typography>
+          <ShoppingCart itemCount={itemCount} />
+          <SearchBar onSearch={() => console.log('OnSearchBar')} />
+
+          {/* Renderiza el componente de acuerdo al estado de autenticación */}
+          {isAuthenticated ? (
+            <React.Fragment>
+              {/* <IconButton color="inherit" onClick={() => setMenuOpen(true)} variant="contained">
+                Open Menu
+              </IconButton> */}
+              
+
+              <AccountMenu handleClose={handleClose} logout={logout} open={menuOpen} profileComponent={<Profile/>}/>
+            </React.Fragment>
+          ) : (
+            <IconButton color="inherit" onClick={() => loginWithRedirect()} variant="contained">
+              Log In
+            </IconButton>
+          )}
+
+            
+          
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
 };
 
-export default Nav
+export default Nav;

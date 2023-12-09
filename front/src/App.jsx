@@ -4,22 +4,17 @@ import ProductList from './components/ProductList';
 import Nav from './components/Nav/Nav';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import { Container } from '@mui/material';
-import { useAuth0 } from '@auth0/auth0-react';
-import LoginButton from './components/LogingButton';
-import LogoutButton from './components/LogoutButton';
 import Profile from './components/Profile';
 
 const App = () => {
-  const { isAuthenticated, isLoading } = useAuth0();
-
-  if (isLoading) return <h1>Loading...</h1>;
+  
 
   return (
     <>
       <Router>
         <Nav />
-        { isAuthenticated ? <LogoutButton /> : <LoginButton /> }
-        <Profile /> 
+        {/* { isAuthenticated ? <LogoutButton /> : <LoginButton /> } */}
+        {/* <Profile />  */}
         {/* Colocado después del condicional */}
         <Container>
           <Routes>
@@ -35,3 +30,5 @@ const App = () => {
 };
 
 export default App;
+
+

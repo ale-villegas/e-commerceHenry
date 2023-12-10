@@ -8,15 +8,14 @@ import { GlobalContext } from '../../context/GlobalContext';
 
 const Nav = ({ dispatch, resultados }) => {
 
-  const { state } = useContext(GlobalContext);  
-  const itemCount = state.cartItems.length; //Enlazar cantidades
+  const { state } = useContext(GlobalContext);
     
     return (
     <div className={style.Links}>
         <Link className={style.inputNav} to={'/home'}>Home</Link>
         <Link className={style.inputNav} to= {'/about'}> About </Link>
-        <ShoppingCart itemCount={itemCount} />
-        
+        <ShoppingCart />
+
         <SearchBar resultados={resultados} dispatch={dispatch} />
     </div>
   );

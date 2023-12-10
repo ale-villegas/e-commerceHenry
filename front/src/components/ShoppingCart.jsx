@@ -46,9 +46,7 @@ const ShoppingCart = ({ itemCount }) => {
   return (
     <div>
       <IconButton aria-label="Carrito de compras" color="inherit" onClick={handleClick}>
-        <Badge badgeContent={itemCount} color="error">
           <ShoppingCartIcon/>
-        </Badge>
       </IconButton>
       <Popover id={id} open={open} anchorEl={anchorEl} onClose={handleClose}
               anchorOrigin={{vertical: 'bottom', horizontal: 'right',}}

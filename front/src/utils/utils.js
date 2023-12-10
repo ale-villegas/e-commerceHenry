@@ -1,4 +1,3 @@
-
 export const addItemToLocalStorage = (product) => {
     const cartItems = getCartItemsFromLocalStorage();
     const updatedCart = [...cartItems, product];

@@ -116,7 +116,7 @@ const ProductList = () => {
                 name="1"
                 checked={filtros["1"]}
                 onChange={handleCheckboxChange}
-                control={<Checkbox defaultChecked />} label="Eléctricas" />
+                control={<Checkbox Checked />} label="Eléctricas" />
               </li>
               <li>
               <FormControlLabel
@@ -124,7 +124,7 @@ const ProductList = () => {
                name="2"
                checked={filtros["2"]}
                onChange={handleCheckboxChange}
-               control={<Checkbox defaultChecked />} label="Acústicas" />
+               control={<Checkbox Checked />} label="Acústicas" />
               </li>
               <li>
               <FormControlLabel
@@ -132,7 +132,7 @@ const ProductList = () => {
                name="3"
                checked={filtros["3"]}
                onChange={handleCheckboxChange}
-               control={<Checkbox defaultChecked />} label="Criollas" />
+               control={<Checkbox Checked />} label="Criollas" />
               </li>
             </ul>
             <Box sx={{ '& button': { m: 1 } }}>

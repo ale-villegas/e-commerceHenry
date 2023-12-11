@@ -54,7 +54,7 @@ const Nav = ({ dispatch, resultados }) => {
         }}>
         <SearchBar />
      {isAuthenticated && <ShoppingCart /> }   
-     <ShoppingCart />
+   
         {isAuthenticated ? (
             <React.Fragment>
               {/* <IconButton color="inherit" onClick={() => setMenuOpen(true)} variant="contained">

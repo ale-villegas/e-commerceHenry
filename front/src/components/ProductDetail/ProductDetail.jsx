@@ -8,7 +8,7 @@ import "../ProductDetail/ProductDetail.css";
 import { ACTION_TYPES, GlobalContext } from "../../context/GlobalContext";
 
 //ShoppingCart
-import {getCartItemsFromLocalStorage, addItemToLocalStorage} from "../../utils/utils";
+
 
 
 
@@ -22,7 +22,8 @@ const ProductDetail = () => {
       dispatch({
         type: ACTION_TYPES.GET_PRODUCT_BY_ID,
         payload: data,
-      });
+      }); 
+      console.log(data)
     });
   }, []);
 
@@ -35,12 +36,12 @@ const ProductDetail = () => {
       price: state.productById.precio,
       quantity: 1,
     };
-    addItemToLocalStorage(item)
+    
     dispatch({
       type: ACTION_TYPES.ADD_TO_CART,
       payload: item,
     });
-    console.log("Cart after adding item:", state.cartItems);
+ 
   };
 
   return (

@@ -5,7 +5,8 @@ import Nav from './components/Nav/Nav';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import { Container } from '@mui/material';
 import Profile from './components/Profile';
-import {Compraexitosa} from "../src/components/compraexitosa.jsx"
+import CompraExitosa from './components/Compraexitosa';
+
 
 const App = () => {
   
@@ -23,7 +24,7 @@ const App = () => {
             <Route exact path="/home" element={<ProductList />} />
             <Route exact path="/about" element={<ProductList />} />
             <Route path="/:productId" element={<ProductDetail />} />
-            <Route exact path="/compraexitosa" element={<Compraexitosa />} />
+            <Route exact path="/compraexitosa" element={<CompraExitosa />} />
           </Routes>
         </Container>
       </Router>

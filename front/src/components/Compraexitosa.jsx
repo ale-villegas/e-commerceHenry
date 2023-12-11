@@ -5,7 +5,7 @@ import { ACTION_TYPES} from "../context/GlobalContext";
 
 
 
-export const Compraexitosa = () => {
+const CompraExitosa = () => {
 
     const {dispatch} = useContext(GlobalContext)
      const navigate = useNavigate()
@@ -39,3 +39,6 @@ export const Compraexitosa = () => {
     </div>
   )
 }
+
+
+export default CompraExitosa

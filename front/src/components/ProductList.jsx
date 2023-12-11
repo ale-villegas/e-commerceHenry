@@ -42,9 +42,9 @@ const ProductList = () => {
         type: "GET_FILTER_GUITARRAS",
         payload: response,
       });
-      setResultados(response);
+      setResultados(response); 
     })    
-
+console.log("prueba")
   };  
 
 

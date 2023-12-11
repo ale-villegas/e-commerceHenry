@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import ShoppingCart from './ShoppingCart.jsx';
+import ShoppingCart from '../ShoppingCart.jsx';
 import SearchBar from '../SearchBar/SearchBar';
 import { AppBar, Toolbar, Typography, Container, IconButton, ThemeProvider } from '@mui/material';
 import { Link } from 'react-router-dom';

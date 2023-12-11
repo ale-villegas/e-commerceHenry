@@ -7,6 +7,11 @@ import getProductById from "../../utils/getProductById";
 import "../ProductDetail/ProductDetail.css";
 import { ACTION_TYPES, GlobalContext } from "../../context/GlobalContext";
 
+//ShoppingCart
+import {getCartItemsFromLocalStorage, addItemToLocalStorage} from "../../utils/utils";
+
+
+
 const ProductDetail = () => {
   const { productId } = useParams();
 
@@ -20,6 +25,24 @@ const ProductDetail = () => {
       });
     });
   }, []);
+
+  //Agregar al carrito de compras
+  const addToCart = () => {
+    // Enviar la acción para agregar el producto al carrito
+    const item = {
+      id: state.productById.id,
+      name: state.productById.nombre,
+      price: state.productById.precio,
+      quantity: 1,
+    };
+    addItemToLocalStorage(item)
+    dispatch({
+      type: ACTION_TYPES.ADD_TO_CART,
+      payload: item,
+    });
+    console.log("Cart after adding item:", state.cartItems);
+  };
+
   return (
     <Container>
       <Box sx={{
@@ -48,7 +71,7 @@ const ProductDetail = () => {
             
             <Typography><b>Descripcion:</b> <br/>{state.productById.descripcion}</Typography>
             <Typography>Precio : $ {state.productById.precio}</Typography>
-            <Button variant="contained">Agregar al carrito</Button>
+            <Button variant="contained" onClick={addToCart}>Agregar al carrito</Button>
           </Box>
         
       </Box>

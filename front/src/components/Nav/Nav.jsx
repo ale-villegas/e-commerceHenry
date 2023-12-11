@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
-import ShoppingCart from './ShoppingCart.jsx';
+import React, { useState, useContext } from 'react';
+import ShoppingCart from '../ShoppingCart.jsx';
 import SearchBar from '../SearchBar/SearchBar';
 import { AppBar, Toolbar, Typography, Container, IconButton, ThemeProvider } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import Profile from '../Profile.jsx';
 import AccountMenu from '../AccountMenu.jsx'; // Importa el nuevo componente
+import style from './Nav.module.css';
+import { GlobalContext } from '../../context/GlobalContext';
 
-const Nav = () => {
+const Nav = ({ dispatch, resultados}) => {
   const [menuOpen, setMenuOpen] = useState(false); // Estado para controlar la apertura/cierre del menú
-  const itemCount = 1; // Enlazar cantidades
   const { isAuthenticated, isLoading, loginWithRedirect, logout} = useAuth0();
+  const { state } = useContext(GlobalContext);
 
   if (isLoading) return <h1>Loading...</h1>;
 
@@ -31,7 +33,7 @@ const Nav = () => {
           <Typography variant="h8" component={Link} to="/about" sx={{ textDecoration: 'none', color: 'inherit' }}>
             About
           </Typography>
-          <ShoppingCart itemCount={itemCount} />
+          <ShoppingCart />
           <SearchBar onSearch={() => console.log('OnSearchBar')} />
 
           {/* Renderiza el componente de acuerdo al estado de autenticación */}

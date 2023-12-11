@@ -53,16 +53,22 @@ const ProductDetail = () => {
         p: "30px",
         border: "1px solid ",
         borderRadius: "5px",
-        margin: "15px"
+        margin: "15px",
+        flexDirection: { xs: 'column', md: 'row' },
+        textAlign: 'center'
       }}>
         
         <Box sx={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
+            gap: "20px",
+            
+
           }}>
             <Typography variant= "h3">{state.productById.nombre}</Typography>
-            <img width="200px" src={state.productById.image} />
+            <img width="200px" src={state.productById.image} 
+            style={{ margin: 'auto' }}/>
           </Box>
           <Box sx={{
             display: "flex",

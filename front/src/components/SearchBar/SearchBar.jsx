@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import style from "./SearchBar.module.css";
+
 import { useState, useEffect, useRef } from "react";
 import { GlobalContext, ACTION_TYPES } from "../../context/GlobalContext";
+import { TextField } from "@mui/material";
 const SearchBar = () => {
-  const { state, dispatch, resultados } = useContext(GlobalContext);
+  const { dispatch, resultados } = useContext(GlobalContext);
   const [busqueda, setBusqueda] = useState("");
   const inputRef = useRef(null);
 
@@ -24,21 +25,24 @@ const SearchBar = () => {
     setBusqueda(event.target.value);
   };
   return (
-    <div className={style.searchBar}>
-      <div className={style.ContainInput}>
-        <input
+    
+      
+        <TextField
           onChange={handleChange}
           placeholder="Guitarra acústica, eléctrica, criolla...	"
-          className={style.inputNav}
           type="search"
           value={busqueda}
           ref={inputRef}
+          id="outlined-basic"  variant="outlined" 
+          InputProps={{
+            style: { color: 'white' ,
+                     border: "solid 1px white",
+                    outline: "none" , 
+                  height: "40px"} // Cambia 'blue' al color que desees
+          }}
         />
-        <button className={style.btnsearch} onClick={() => {}}>
-          Buscar
-        </button>
-      </div>
-    </div>
+    
+    
   );
 };
 

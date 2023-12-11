@@ -69,6 +69,7 @@ dispatch({
 
  }
 
+ console.log(state.cartItems)
 
   // !! Revisar que se vacie localStorage cuando se borran los estados
   return (

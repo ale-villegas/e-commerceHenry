@@ -17,9 +17,9 @@ Mercado_Pago.post("/", async (req, res) => {
    const nuevoparray = hola.map(e => {
     return {
                 title: e.name,
-                unit_price: e.price,
+                unit_price: e.price * e.quantity,
                 currency_id: "ARS",
-                quantity: 1,
+                quantity: 1
     }
    })
 

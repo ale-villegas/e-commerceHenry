@@ -16,6 +16,7 @@ import Divider from "@mui/material/Divider";
 import { ACTION_TYPES, GlobalContext } from "../context/GlobalContext";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
+import axios from "axios";
 
 const ShoppingCart = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -44,6 +45,31 @@ dispatch({
   type: ACTION_TYPES.EMPTY_CART
 })
   }
+
+
+ 
+
+
+
+ 
+
+
+ const Funcioncomprar = async () => {
+
+  
+    const response = await axios.post("http://localhost:4000/Mercado_Pago", state.cartItems
+    )
+    
+    
+    window.location.href = response.data
+
+    console.log(response)
+
+    
+
+ }
+
+ console.log(state.cartItems)
 
   // !! Revisar que se vacie localStorage cuando se borran los estados
   return (
@@ -87,7 +113,7 @@ dispatch({
         </Typography>
         <Box>
           <Button onClick={emptyCart}>Vaciar carrito</Button>
-          <Button>Proceder a pagar</Button>
+          <Button onClick={Funcioncomprar}>Proceder a pagar</Button>
         </Box>
       </Popover>
     </div>

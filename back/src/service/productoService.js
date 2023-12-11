@@ -2,6 +2,7 @@ const guitarras = require('./../utils/data');
 const { Sequelize } = require('sequelize');
 const {Categorias, Productos, User} = require('../DB_connection');
 
+
 const axios = require('axios');
 
 

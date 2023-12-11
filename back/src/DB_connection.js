@@ -13,7 +13,8 @@ const {DB_DEPLOY} = process.env;
 //    { logging: false, native: false }
 // );
 const sequelize = new Sequelize(
-   DB_DEPLOY != undefined ? DB_DEPLOY : `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/luthiers`,
+   //DB_DEPLOY != undefined ? DB_DEPLOY : `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/luthiers`,
+   DB_DEPLOY,
    { logging: false, native: false }
 );
 

@@ -30,8 +30,8 @@ Mercado_Pago.post("/", async (req, res) => {
         const preference = {
             items: nuevoparray,
             back_urls: {
-                "success": "http://localhost:5173/compraexitosa",
-                "failure": "http://localhost:5173",
+                "success": "https://glowing-marshmallow-629c31.netlify.app/compraexitosa",
+                "failure": "https://glowing-marshmallow-629c31.netlify.app/",
                 "pending": ""
             },
             auto_return: "approved",
@@ -50,3 +50,5 @@ Mercado_Pago.post("/", async (req, res) => {
 
 
 module.exports = Mercado_Pago
+
+//http://localhost:5173/compraexitosa

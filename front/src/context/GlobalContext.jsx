@@ -56,15 +56,13 @@ export const GlobalContextProvider = (props) => {
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [resultados, setResultados] = useState(state.allProducts);
+
 
   return (
     <GlobalContext.Provider
       value={{
         state,
-        dispatch,
-        resultados,
-        setResultados,
+        dispatch
       }}
     >
       {props.children}

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import ShoppingCart from "../ShoppingCart.jsx";
-import SearchBar from "../SearchBar/SearchBar";
+import ShoppingCart from "./ShoppingCart.jsx";
+
 import {
   AppBar,
   Toolbar,
@@ -11,11 +11,12 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import Profile from "../Profile.jsx";
-import AccountMenu from "../AccountMenu.jsx"; // Importa el nuevo componente
+import Profile from "./Profile.jsx";
+import AccountMenu from "./AccountMenu.jsx"; // Importa el nuevo componente
 
-import { GlobalContext } from "../../context/GlobalContext";
+import { GlobalContext } from "../context/GlobalContext.jsx";
 import { Box } from "@mui/system";
+import SearchBar from "./SearchBar.jsx";
 
 const Nav = ({ dispatch, resultados }) => {
   const [menuOpen, setMenuOpen] = useState(false); // Estado para controlar la apertura/cierre del menú

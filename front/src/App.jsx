@@ -1,28 +1,20 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import ProductList from './components/ProductList';
-import Nav from './components/Nav/Nav';
-import ProductDetail from './components/ProductDetail/ProductDetail';
-import { Container } from '@mui/material';
-import Profile from './components/Profile';
-import CompraExitosa from './components/Compraexitosa';
-
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ProductList from "./components/ProductList";
+import { Container } from "@mui/material";
+import CompraExitosa from "./components/Compraexitosa";
+import ProductDetail from "./components/ProductDetail";
+import Nav from "./components/Nav";
 
 const App = () => {
-  
-
   return (
     <>
       <Router>
         <Nav />
-        {/* { isAuthenticated ? <LogoutButton /> : <LoginButton /> } */}
-        {/* <Profile />  */}
-        {/* Colocado después del condicional */}
         <Container>
           <Routes>
             <Route exact path="/" element={<ProductList />} />
             <Route exact path="/home" element={<ProductList />} />
-            <Route exact path="/about" element={<ProductList />} />
             <Route path="/:productId" element={<ProductDetail />} />
             <Route exact path="/compraexitosa" element={<CompraExitosa />} />
           </Routes>
@@ -33,5 +25,3 @@ const App = () => {
 };
 
 export default App;
-
-

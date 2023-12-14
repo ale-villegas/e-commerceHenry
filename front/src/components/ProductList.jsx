@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 
-import "./ProductCard.css";
+
 
 import ProductCard from "./ProductCard.jsx";
 import { ACTION_TYPES, GlobalContext } from "../context/GlobalContext.jsx";
@@ -44,7 +44,7 @@ const ProductList = () => {
       });
       setResultados(response); 
     })    
-console.log("prueba")
+
   };  
 
 

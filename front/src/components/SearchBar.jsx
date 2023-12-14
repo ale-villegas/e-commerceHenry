@@ -1,18 +1,17 @@
-import { useContext } from "react";
-
-import { useState, useEffect, useRef } from "react";
-import { GlobalContext, ACTION_TYPES } from "../../context/GlobalContext";
+import { useState, useEffect, useRef, useContext } from "react";
+import { GlobalContext, ACTION_TYPES } from "../context/GlobalContext";
 import { TextField } from "@mui/material";
+
 const SearchBar = () => {
-  const { dispatch, resultados } = useContext(GlobalContext);
+  const { dispatch, state } = useContext(GlobalContext);
   const [busqueda, setBusqueda] = useState("");
   const inputRef = useRef(null);
 
   useEffect(() => {
-    // console.log(resultados);
+
     dispatch({
       type: ACTION_TYPES.GET_ALL_PRODUCTS,
-      payload: resultados.filter(
+      payload: state.allProducts.filter(
         (guitarra) =>
           guitarra.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
           guitarra.descripcion.toLowerCase().includes(busqueda.toLowerCase())
@@ -38,7 +37,7 @@ const SearchBar = () => {
             style: { color: 'white' ,
                      border: "solid 1px white",
                     outline: "none" , 
-                  height: "40px"} // Cambia 'blue' al color que desees
+                  height: "40px"} //
           }}
         />
     

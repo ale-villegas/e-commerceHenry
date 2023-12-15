@@ -35,7 +35,7 @@ const ShoppingCart = () => {
 
   const calculateTotal = () => {
     return state.cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
+      (total, item) => total + item.precio * item.quantity,
       0
     );
   }; 
@@ -97,8 +97,8 @@ dispatch({
               <React.Fragment key={index}>
                 <ListItem>
                   <ListItemText
-                    primary={item.name}
-                    secondary={`Cantidad: ${item.quantity}, Precio: ${item.price}`}
+                    primary={item.nombre}
+                    secondary={`Cantidad: ${item.quantity}, Precio: ${item.precio}`}
                   />
                 </ListItem>
               </React.Fragment>

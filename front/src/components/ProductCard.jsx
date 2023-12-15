@@ -1,60 +1,101 @@
 
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
-//import './ProductCard.css'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Paper } from '@mui/material';
+import { ACTION_TYPES, GlobalContext } from '../context/GlobalContext';
 
 
 
 
-const ProductCard = (props) => {
-  const { product } = props;
+const ProductCard = ({product}) => {
 
-  return (
-    <li key={product.id} className="guitar-card">
+const {state, dispatch} = useContext(GlobalContext)
 
-     
-<Card sx={{ maxWidth: 345 }}>
+ const handleClick = (product) => {
+console.log(product)
+  dispatch({
+    type: ACTION_TYPES.ADD_TO_CART,
+    payload: product
+    
+  })
+
+ }
+ return (
+
+  <Paper elevation={1}> 
+<Card sx={{ 
+  
+  }}>
       <CardMedia
         component="img"
         alt={product.nombre}
         height="400"
         image={product.image}
       />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-        {product.nombre}
+      <CardContent sx={{
+        display: "flex",
+        flexDirection: "column",
+       gap: "5px"
+      }}>
+        <Typography gutterBottom variant="subtitle1">
+      <b>{product.nombre}</b> 
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        {product.descripcion}
+        {product.descripcion} 
+        </Typography>
+        <Typography variant='body2'>
+         Precio: <b>${product.precio}</b>
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions sx={{
+display: "flex",
+justifyContent: "space-around"
+      }}>
         
-      <Link to={`/${product.id}`}> <Button size="small">Learn More</Button></Link> 
-      <Typography variant="h7" color="text.primary">
-         Precio: ${product.precio}
-        </Typography>
+      <Link to={`/${product.id}`}> <Button size="small">Ver mas</Button></Link>  
+      <Button size="small" variant='contained' onClick={() => handleClick(product)}>Agregar al carrito</Button>
+  
       </CardActions>
     </Card>
         
-
-    </li>
+    </Paper>  
+    
   );
 };
 
 export default ProductCard;
 
-/*  <div className="card-content">
-<Link to={`/${product.id}`}>  <p className="product-name">{product.nombre}</p></Link>     
-  <p className="product-description">{product.descripcion}</p>
-  <p className="product-price">Precio: ${product.precio}</p>
-  <p className="product-category">Categoría: {product.categorias}</p>
-  <img className="product-image" src={product.image} alt={product.nombre} />
-</div>*/
+/*  <Card sx={{ minWidth: 275 }}> 
+   <CardMedia
+        component="img"
+        alt={product.nombre}
+        height="400"
+        image={product.image}
+      />
+      <CardContent>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            {product.nombre}
+        </Typography>
+        <Typography variant="h5" component="div">
+          be{bull}nev{bull}o{bull}lent
+        </Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          adjective
+        </Typography>
+        <Typography variant="body2">
+          well meaning and kindly.
+          <br />
+          {'"a benevolent smile"'}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Learn More</Button>
+      </CardActions>
+    </Card>*/

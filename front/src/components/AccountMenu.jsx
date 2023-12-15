@@ -12,7 +12,7 @@ import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 
-export default function AccountMenu({ handleClose, logout,  profileComponent  }) {
+export default function AccountMenu({ handleClose, logout,  profileComponent, imagenDeUsuario  }) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
   
@@ -39,7 +39,7 @@ export default function AccountMenu({ handleClose, logout,  profileComponent  })
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }}><img src={imagenDeUsuario} style={{width : "50px", objectFit: "contain"}}/> </Avatar>
           </IconButton>
         </Tooltip>
       </Box>

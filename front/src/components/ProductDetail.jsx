@@ -28,8 +28,9 @@ const ProductDetail = () => {
     // Enviar la acción para agregar el producto al carrito
     const item = {
       id: state.productById.id,
-      name: state.productById.nombre,
-      price: state.productById.precio,
+      nombre: state.productById.nombre,
+      precio: state.productById.precio,
+      descripcion: state.productById.descripcion,
       quantity: 1,
     };
 

@@ -19,7 +19,7 @@ import { styled } from '@mui/material/styles';
 
 
 const ProductList = () => {
-  const { state, dispatch, setResultados } = useContext(GlobalContext);
+  const { state, dispatch } = useContext(GlobalContext);
   const [ordenar, setordenar] =useState(getGuitarras)
   
   const [filtros, setFiltros] = useState({
@@ -157,11 +157,16 @@ const ProductList = () => {
            
           </fieldset>
         </div>
-      <ul className="guitar-cards">
+      <Box sx={{
+        display: "grid",
+        gridTemplateColumns: 'repeat(auto-fill, minmax(345px, 1fr))',
+        gap: "20px",
+        marginTop: "35px"
+      }}>
         {state.allProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
-      </ul>
+      </Box>
     </div>
   );
 };

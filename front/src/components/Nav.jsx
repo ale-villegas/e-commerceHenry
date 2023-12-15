@@ -9,7 +9,7 @@ import {
   IconButton,
   ThemeProvider,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useRouteLoaderData } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Profile from "./Profile.jsx";
 import AccountMenu from "./AccountMenu.jsx"; // Importa el nuevo componente
@@ -20,7 +20,8 @@ import SearchBar from "./SearchBar.jsx";
 
 const Nav = ({ dispatch, resultados }) => {
   const [menuOpen, setMenuOpen] = useState(false); // Estado para controlar la apertura/cierre del menú
-  const { isAuthenticated, isLoading, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, isLoading, loginWithRedirect, logout, user } = useAuth0();
+  console.log(user)
   const { state } = useContext(GlobalContext);
 
   //if (isLoading) return <h1>Loading...</h1>;
@@ -31,7 +32,7 @@ const Nav = ({ dispatch, resultados }) => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Toolbar sx={{
         width : "100%",
         display: "flex",
@@ -63,7 +64,7 @@ const Nav = ({ dispatch, resultados }) => {
               </IconButton> */}
               
 
-              <AccountMenu handleClose={handleClose} logout={logout} open={menuOpen} profileComponent={<Profile/>}/>
+              <AccountMenu handleClose={handleClose} logout={logout} open={menuOpen} profileComponent={<Profile/>} imagenDeUsuario={user.picture}/>
             </React.Fragment>
           ) : (
             <IconButton sx={{

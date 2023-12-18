@@ -4,7 +4,7 @@ export const addItemToLocalStorage = (product) => {
     localStorage.setItem('cartItems', JSON.stringify(updatedCart));
 };
 
-export const getCartItemsFromLocalStorage = () => {
-    const storedCartItems = localStorage.getItem('cartItems');
-    return storedCartItems ? JSON.parse(storedCartItems) : [];
+export const getCartItemsFromLocalStorage = (cartKey) => {
+    const storedCartItems = localStorage.getItem(cartKey);
+    return JSON.parse(storedCartItems) || [];
 };

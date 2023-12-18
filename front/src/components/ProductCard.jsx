@@ -1,6 +1,6 @@
 
 /* eslint-disable react/prop-types */
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -8,7 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Paper } from '@mui/material';
+import { Alert, Paper, Snackbar } from '@mui/material';
 import { ACTION_TYPES, GlobalContext } from '../context/GlobalContext';
 
 
@@ -16,19 +16,33 @@ import { ACTION_TYPES, GlobalContext } from '../context/GlobalContext';
 
 const ProductCard = ({product}) => {
 
-const {state, dispatch} = useContext(GlobalContext)
-
+const {dispatch} = useContext(GlobalContext)
+const [open, setOpen] = useState(false);
  const handleClick = (product) => {
-console.log(product)
+
   dispatch({
     type: ACTION_TYPES.ADD_TO_CART,
     payload: product
     
   })
 
- }
- return (
+  setOpen(true)
+}
 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+
+
+
+
+ return (
+<>
   <Paper elevation={1}> 
 <Card sx={{ 
   
@@ -64,9 +78,14 @@ justifyContent: "space-around"
   
       </CardActions>
     </Card>
-        
+    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+        Guitarra <b>{product.nombre}</b> agregada al carrito
+        </Alert>
+      </Snackbar>
     </Paper>  
-    
+ 
+    </>
   );
 };
 

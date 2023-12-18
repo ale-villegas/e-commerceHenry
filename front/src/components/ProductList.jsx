@@ -19,7 +19,7 @@ import { styled } from '@mui/material/styles';
 
 
 const ProductList = () => {
-  const { state, dispatch } = useContext(GlobalContext);
+  const { state, dispatch, user } = useContext(GlobalContext);
   const [ordenar, setordenar] =useState(getGuitarras)
   
   const [filtros, setFiltros] = useState({
@@ -78,7 +78,7 @@ const ProductList = () => {
 
      setResultados(productoscopia)
  
-  }
+  } 
 
   
   
@@ -92,7 +92,12 @@ const ProductList = () => {
       });
       setResultados(data);
     });
-  }, []);
+dispatch({
+  type: ACTION_TYPES.SET_LOCAL_STORAGE,
+
+})
+
+  }, [user]);
 
   return (
     <div>

@@ -47,11 +47,13 @@ dispatch({
   }
 
 
- 
+  const calculateBadge = () => {
+    return state.cartItems.reduce(
+      (total, item) => total +  item.quantity,
+      0
+    );
+  }; 
 
-
-
- 
 
 
  const Funcioncomprar = async () => {
@@ -79,7 +81,7 @@ dispatch({
         color="inherit"
         onClick={handleClick}
       >
-        <Badge badgeContent={state.cartItems.length} color="error">
+        <Badge badgeContent={calculateBadge()} color="error">
           <ShoppingCartIcon />
         </Badge>
       </IconButton>

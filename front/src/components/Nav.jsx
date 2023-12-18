@@ -1,16 +1,15 @@
 import React, { useState, useContext } from "react";
 import ShoppingCart from "./ShoppingCart.jsx";
-
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
 import {
   AppBar,
   Toolbar,
-  Typography,
-  Container,
-  IconButton,
-  ThemeProvider,
+ IconButton,
+
 } from "@mui/material";
-import { Link, useRouteLoaderData } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
+
 import Profile from "./Profile.jsx";
 import AccountMenu from "./AccountMenu.jsx"; // Importa el nuevo componente
 
@@ -18,13 +17,13 @@ import { GlobalContext } from "../context/GlobalContext.jsx";
 import { Box } from "@mui/system";
 import SearchBar from "./SearchBar.jsx";
 
-const Nav = ({ dispatch, resultados }) => {
+const Nav = ({themeOption, handleChangeTheme}) => {
   const [menuOpen, setMenuOpen] = useState(false); // Estado para controlar la apertura/cierre del menú
-  const { isAuthenticated, isLoading, loginWithRedirect, logout, user } = useAuth0();
-  console.log(user)
-  const { state } = useContext(GlobalContext);
 
-  //if (isLoading) return <h1>Loading...</h1>;
+
+ const {isAuthenticated, isLoading, loginWithRedirect, logout, user} = useContext(GlobalContext)
+
+  
 
   // Función para cerrar el menú
   const handleClose = () => {
@@ -73,7 +72,20 @@ const Nav = ({ dispatch, resultados }) => {
             }} color="inherit" onClick={() => loginWithRedirect()} variant="contained">
               Log In
             </IconButton>
-          )}
+          )} 
+
+
+          {
+            themeOption ? 
+            <DarkModeIcon sx={{
+              marginTop: "10px", 
+              cursor: "pointer"
+            }} onClick={handleChangeTheme} /> : 
+             <LightModeIcon onClick={handleChangeTheme} sx={{
+              marginTop: "10px", 
+              cursor: "pointer"
+            }}/>
+          }
         </Box> 
       </Toolbar>
     </AppBar>

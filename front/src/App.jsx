@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ProductList from "./components/ProductList";
 import { Container, CssBaseline, ThemeProvider } from "@mui/material";
@@ -6,13 +6,20 @@ import CompraExitosa from "./components/Compraexitosa";
 import ProductDetail from "./components/ProductDetail";
 import Nav from "./components/Nav";
 import { darkTheme, lightTheme } from "./styles/theme";
+import Login from "./components/Login";
 
 const App = () => {
 
 const [theme, setTheme] = useState(true)
 const handleChangeTheme = () => {
   setTheme(!theme)
-}
+  localStorage.setItem("theme", JSON.stringify(!theme))
+} 
+
+
+useEffect(() => {
+  setTheme(JSON.parse(localStorage.getItem("theme")))
+}, [])
   return (
     <>
      <ThemeProvider theme={theme ? lightTheme : darkTheme}>
@@ -22,7 +29,7 @@ const handleChangeTheme = () => {
         <Nav  handleChangeTheme={handleChangeTheme} themeOption={theme}/>
        
           <Routes>
-            <Route exact path="/" element={<ProductList />} />
+            <Route exact path="/" element={<Login />} />
             <Route exact path="/home" element={<ProductList />} />
             <Route path="/:productId" element={<ProductDetail />} />
             <Route exact path="/compraexitosa" element={<CompraExitosa />} />

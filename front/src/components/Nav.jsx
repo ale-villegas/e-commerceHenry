@@ -39,6 +39,18 @@ const Nav = ({themeOption, handleChangeTheme}) => {
         alignContent: "space-between", 
         justifyContent: "space-between"
       }}>
+        <Box>
+         <IconButton
+          component={Link}
+          to="/"
+          sx={{
+            fontSize: "16px",
+            borderRadius: "5px"}}
+            color="inherit"
+     
+        >
+          Home
+        </IconButton>
         <IconButton
           component={Link}
           to="/home"
@@ -48,8 +60,9 @@ const Nav = ({themeOption, handleChangeTheme}) => {
             color="inherit"
      
         >
-          Home
+          Catalogo
         </IconButton>
+        </Box>
         <Box sx={{
           display: "flex", 
           gap: "35px"

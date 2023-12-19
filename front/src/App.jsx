@@ -18,8 +18,9 @@ const handleChangeTheme = () => {
      <ThemeProvider theme={theme ? lightTheme : darkTheme}>
      <CssBaseline />
       <Router>
+      <Container>
         <Nav  handleChangeTheme={handleChangeTheme} themeOption={theme}/>
-        <Container>
+       
           <Routes>
             <Route exact path="/" element={<ProductList />} />
             <Route exact path="/home" element={<ProductList />} />

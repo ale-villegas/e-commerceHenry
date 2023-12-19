@@ -34,12 +34,12 @@ export default function AccountMenu({ handleClose, logout,  profileComponent, im
           <IconButton
             onClick={handleClick}
             size="small"
-            sx={{ ml: 2 }}
+            sx={{ ml: 1 }}
             aria-controls={open ? "account-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}><img src={imagenDeUsuario} style={{width : "50px", objectFit: "contain"}}/> </Avatar>
+            <Avatar sx={{ width: 28, height: 28 }}><img src={imagenDeUsuario} style={{width : "40px", objectFit: "contain"}}/> </Avatar>
           </IconButton>
         </Tooltip>
       </Box>

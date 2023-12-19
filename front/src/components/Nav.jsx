@@ -6,6 +6,7 @@ import {
   AppBar,
   Toolbar,
  IconButton,
+ CircularProgress,
 
 } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -36,7 +37,7 @@ const Nav = ({themeOption, handleChangeTheme}) => {
         width : "100%",
         display: "flex",
         alignContent: "space-between", 
-        justifyContent: "space-around"
+        justifyContent: "space-between"
       }}>
         <IconButton
           component={Link}
@@ -54,25 +55,28 @@ const Nav = ({themeOption, handleChangeTheme}) => {
           gap: "35px"
         }}>
         <SearchBar />
-     {isAuthenticated && <ShoppingCart /> }   
-   
-        {isAuthenticated ? (
-            <React.Fragment>
-              {/* <IconButton color="inherit" onClick={() => setMenuOpen(true)} variant="contained">
-                Open Menu
-              </IconButton> */}
-              
 
-              <AccountMenu handleClose={handleClose} logout={logout} open={menuOpen} profileComponent={<Profile/>} imagenDeUsuario={user.picture}/>
-            </React.Fragment>
-          ) : (
-            <IconButton sx={{
-              fontSize: "16px",
-              borderRadius: "5px"
-            }} color="inherit" onClick={() => loginWithRedirect()} variant="contained">
-              Log In
-            </IconButton>
-          )} 
+
+        {isLoading ?
+         <CircularProgress color="inherit" sx={{marginTop : "10px"}} size={20} thickness={4} /> : 
+         !isLoading && isAuthenticated ? 
+         <>
+         <ShoppingCart />   
+         <AccountMenu handleClose={handleClose} logout={logout} open={menuOpen} profileComponent={<Profile/>} imagenDeUsuario={user.picture}/> 
+         </>
+          : 
+         <IconButton sx={{
+          fontSize: "16px",
+          borderRadius: "5px"
+        }} color="inherit" onClick={() => loginWithRedirect()} variant="contained">
+          Log In
+        </IconButton>
+         }
+            
+           
+        
+          
+          
 
 
           {
@@ -86,6 +90,8 @@ const Nav = ({themeOption, handleChangeTheme}) => {
               cursor: "pointer"
             }}/>
           }
+
+
         </Box> 
       </Toolbar>
     </AppBar>

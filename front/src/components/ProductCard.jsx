@@ -8,7 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Alert, Paper, Snackbar } from '@mui/material';
+import { Alert, Divider, Paper, Snackbar } from '@mui/material';
 import { ACTION_TYPES, GlobalContext } from '../context/GlobalContext';
 
 
@@ -61,18 +61,21 @@ const [open, setOpen] = useState(false);
         <Typography gutterBottom variant="subtitle1">
       <b>{product.nombre}</b> 
         </Typography>
+        <Divider/>
         <Typography variant="body2" color="text.secondary">
         {product.descripcion} 
         </Typography>
         <Typography variant='body2'>
          Precio: <b>${product.precio}</b>
         </Typography>
+       
       </CardContent>
+      <Divider/>
       <CardActions sx={{
 display: "flex",
 justifyContent: "space-around"
       }}>
-        
+      
       <Link to={`/${product.id}`}> <Button size="small">Ver mas</Button></Link>  
       <Button size="small" variant='contained' onClick={() => handleClick(product)}>Agregar al carrito</Button>
   

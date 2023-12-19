@@ -16,7 +16,7 @@ import reportWebVitals from './reportWebVitals.jsx';
 const root = createRoot(document.getElementById('root'));
 
 root.render(
-  <React.StrictMode>
+
      <Auth0Provider 
      domain= "dev-3ck6qlmlem0mraha.us.auth0.com" 
      clientId = "vEA0S1QstVANFJ7SR7OHUnCg1hmoocFm" 
@@ -27,7 +27,7 @@ root.render(
       <App />
     </GlobalContextProvider>
     </Auth0Provider>
-  </React.StrictMode>,
+ ,
 
 );
 

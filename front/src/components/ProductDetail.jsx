@@ -19,7 +19,7 @@ const ProductDetail = () => {
         type: ACTION_TYPES.GET_PRODUCT_BY_ID,
         payload: data,
       });
-      console.log(data);
+      
     });
   }, []);
 

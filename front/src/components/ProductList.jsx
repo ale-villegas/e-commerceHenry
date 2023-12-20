@@ -27,7 +27,7 @@ const ProductList = () => {
   const collectionId = queryParams.get('collection_id');
   const collectionStatus = queryParams.get('collection_status'); 
 
-  console.log(collectionId, collectionStatus)
+
   const [filter, setFilter] = useState(0);
 
   const handleChange = (event) => {

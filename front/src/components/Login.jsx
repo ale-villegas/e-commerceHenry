@@ -54,7 +54,7 @@ justifyContent: "center",
         Bienvenido/a <b>{user.given_name}</b> 
         
     </Typography>
-  <Link to="/home"><Button variant='contained'> Ingresa al catalogo de guitarras</Button></Link>
+  <Link to="/product-list"><Button variant='contained'> Ingresa al catalogo de guitarras</Button></Link>
     </Box>
     </Box> : 
     

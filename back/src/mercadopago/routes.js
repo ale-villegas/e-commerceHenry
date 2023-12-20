@@ -30,8 +30,8 @@ Mercado_Pago.post("/", async (req, res) => {
         const preference = {
             items: nuevoparray,
             back_urls: {
-                "success": "http://localhost:5173/product-list",
-                "failure": "http://localhost:5173/product-list",
+                "success": "https://sitio-de-guitarras.netlify.app/#/product-list",
+                "failure": "https://sitio-de-guitarras.netlify.app/#/product-list",
                 "pending": ""
             },
             auto_return: "approved",

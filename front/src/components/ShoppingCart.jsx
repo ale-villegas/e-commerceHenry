@@ -59,13 +59,14 @@ dispatch({
  const Funcioncomprar = async () => {
 
   
-    const response = await axios.post("https://backecommercehenry-production.up.railway.app/Mercado_pago", state.cartItems
+    const response = await axios.post("http://localhost:3001/mercado-pago", state.cartItems
+   // https://backecommercehenry-production.up.railway.app/Mercado_pago
     )
     
-    
+    console.log(response.data)
     window.location.href = response.data
 
-
+    console.log(response)
 
     
 

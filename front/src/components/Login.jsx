@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 const Login = () => {
 
 const {isAuthenticated, isLoading, loginWithRedirect, logout, user} = useContext(GlobalContext)
-console.log(user)
+
   return (
 <Box sx={{
 marginTop: "80px",
@@ -15,7 +15,8 @@ width: "100%",
 height: "80vh",
 display: "flex",
 alignItems: "center",
-justifyContent: "center"
+justifyContent: "center",
+flexDirection: { xs: "column", md: "row" }
 }}>
 
 {isLoading  &&  <CircularProgress color="inherit" sx={{marginTop : "10px"}} size={40} thickness={4} /> }
@@ -24,6 +25,7 @@ justifyContent: "center"
     !isLoading && isAuthenticated  ? 
     <Box sx={{
         display: "flex",
+      
         gap: "30px",
         width: "100%",
         alignItems: "center",
@@ -39,9 +41,10 @@ justifyContent: "center"
     display: "flex", 
     flexDirection: "column",
     width: "50%",
+    gap: "20px"
 }}>
     <Typography fontSize="30px">
-        Bienvenido <b>{user.given_name}</b> 
+        Bienvenido/a <b>{user.given_name}</b> 
         
     </Typography>
   <Link to="/home"><Button variant='contained'> Ingresa al catalogo de guitarras</Button></Link>

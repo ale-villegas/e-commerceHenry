@@ -73,7 +73,7 @@ const ProductList = () => {
     fetchData();
   }, [filter]);
 
-  console.log(filter);
+
 
   useEffect(() => {
     dispatch({

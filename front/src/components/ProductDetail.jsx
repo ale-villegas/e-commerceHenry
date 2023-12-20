@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Button, Container, Divider, Typography } from "@mui/material";
 
 
 
@@ -41,18 +41,20 @@ const ProductDetail = () => {
   };
 
   return (
-    <Container>
+  
       <Box
         sx={{
           display: "flex",
-          gap: "20px",
+          gap: "40px",
           justifyContent: "space-between",
+          marginTop: "100px" ,
           p: "30px",
           border: "1px solid ",
           borderRadius: "5px",
-          margin: "15px",
+     
           flexDirection: { xs: "column", md: "row" },
-          textAlign: "center",
+          
+        
         }}
       >
         <Box
@@ -63,11 +65,13 @@ const ProductDetail = () => {
             gap: "20px",
           }}
         >
-          <Typography variant="h3">{state.productById.nombre}</Typography>
+          <Typography fontSize={30}>{state.productById.nombre}</Typography>
+          <Divider/>
           <img
-            width="200px"
+            height="450px"
             src={state.productById.image}
-            style={{ margin: "auto" }}
+            style={{ margin: "auto", 
+          borderRadius: "10px" }}
           />
         </Box>
         <Box
@@ -75,19 +79,33 @@ const ProductDetail = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-around",
+            gap: "15px"
           }}
         >
           <Typography>
-            <b>Descripcion:</b> <br />
-            {state.productById.descripcion}
+   
+           
+          <b>  {state.productById.descripcion} </b>
+
+
+            <br/>
+            <br/>
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
           </Typography>
-          <Typography>Precio : $ {state.productById.precio}</Typography>
-          <Button variant="contained" onClick={addToCart}>
+          
+          <Typography sx={{
+            textAlign : "left",
+            fontSize: "20px"
+          }}><b> $ {state.productById.precio}</b></Typography>
+          <Button variant="contained" onClick={addToCart} sx={{
+            width: "50%",
+          }}>
             Agregar al carrito
           </Button>
         </Box>
       </Box>
-    </Container>
+  
   );
 };
 

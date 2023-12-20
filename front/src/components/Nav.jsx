@@ -82,7 +82,7 @@ const Nav = ({themeOption, handleChangeTheme}) => {
           fontSize: "16px",
           borderRadius: "5px"
         }} color="inherit" onClick={() => loginWithRedirect()} variant="contained">
-          Log In
+          Iniciar sesion
         </IconButton>
          }
             

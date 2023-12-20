@@ -68,7 +68,7 @@ justifyContent: "center",
     justifyContent: "space-evenly"
 }}>
 <img src='https://img.freepik.com/foto-gratis/rollo-estudio-banda-diapason-madera_1172-290.jpg?w=360&t=st=1703014528~exp=1703015128~hmac=ab9a819c13a2e7dcf98748e12a2d15183eb2e209b80f96663df5ba7a5ffc1fab ' style={{
-    height: "80vh",
+    height: "70vh",
     borderRadius :" 10px",
  
   

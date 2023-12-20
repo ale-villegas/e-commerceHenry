@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ProductList from "./components/ProductList";
 import { Container, CssBaseline, ThemeProvider } from "@mui/material";
-import CompraExitosa from "./components/Compraexitosa";
+
 import ProductDetail from "./components/ProductDetail";
 import Nav from "./components/Nav";
 import { darkTheme, lightTheme } from "./styles/theme";
 import Login from "./components/Login";
+import Footer from "./components/Footer";
 
 const App = () => {
 
-const [theme, setTheme] = useState(true)
+const [theme, setTheme] = useState(false)
 const handleChangeTheme = () => {
   setTheme(!theme)
   localStorage.setItem("theme", JSON.stringify(!theme))
@@ -30,11 +31,13 @@ useEffect(() => {
        
           <Routes>
             <Route exact path="/" element={<Login />} />
-            <Route exact path="/home" element={<ProductList />} />
+            <Route exact path="/product-list" element={<ProductList />} />
             <Route path="/:productId" element={<ProductDetail />} />
-            <Route exact path="/compraexitosa" element={<CompraExitosa />} />
           </Routes>
+
+         
         </Container>
+        <Footer/>
       </Router>
       </ThemeProvider>
     </>

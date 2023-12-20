@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import { GlobalContext, ACTION_TYPES } from "../context/GlobalContext";
 import { TextField } from "@mui/material";
+import getGuitarras from "../utils/getGuittaras";
 
 const SearchBar = () => {
   const { dispatch, state } = useContext(GlobalContext);
@@ -8,7 +9,14 @@ const SearchBar = () => {
   const inputRef = useRef(null);
 
   useEffect(() => {
-
+if(busqueda === "") {
+  getGuitarras().then((data) => {
+    dispatch({
+      type: ACTION_TYPES.GET_ALL_PRODUCTS,
+      payload:data
+    })
+  })
+}
     dispatch({
       type: ACTION_TYPES.GET_ALL_PRODUCTS,
       payload: state.allProducts.filter(

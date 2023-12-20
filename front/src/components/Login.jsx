@@ -1,22 +1,27 @@
-import React, { useContext } from 'react'
-import { GlobalContext } from '../context/GlobalContext'
+import React, { useContext, useEffect } from 'react'
+import { ACTION_TYPES, GlobalContext } from '../context/GlobalContext'
 import { Box } from '@mui/system'
 import { Button, CircularProgress, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 const Login = () => {
 
-const {isAuthenticated, isLoading, loginWithRedirect, logout, user} = useContext(GlobalContext)
-
+const {isAuthenticated, isLoading, loginWithRedirect, logout, user, dispatch} = useContext(GlobalContext)
+useEffect(() => {
+    dispatch({
+      type: ACTION_TYPES.SET_LOCAL_STORAGE,
+    });
+  }, [user]);
   return (
+
 <Box sx={{
 marginTop: "80px",
 width: "100%",
-height: "80vh",
+height: { xs: "120vh", md: "77.2vh" },
 display: "flex",
 alignItems: "center",
 justifyContent: "center",
-flexDirection: { xs: "column", md: "row" }
+
 }}>
 
 {isLoading  &&  <CircularProgress color="inherit" sx={{marginTop : "10px"}} size={40} thickness={4} /> }
@@ -29,10 +34,12 @@ flexDirection: { xs: "column", md: "row" }
         gap: "30px",
         width: "100%",
         alignItems: "center",
-        justifyContent: "space-evenly"
+        justifyContent: "space-evenly",
+        marginBottom:"50px" ,
+        flexDirection: { xs: "column", md: "row" }
     }}>
     <img src='https://img.freepik.com/foto-gratis/rollo-estudio-banda-diapason-madera_1172-290.jpg?w=360&t=st=1703014528~exp=1703015128~hmac=ab9a819c13a2e7dcf98748e12a2d15183eb2e209b80f96663df5ba7a5ffc1fab ' style={{
-        height: "80vh",
+      height: "70vh",
         borderRadius :" 10px",
      
       

@@ -53,7 +53,7 @@ const ProductDetail = () => {
           borderRadius: "5px",
      
           flexDirection: { xs: "column", md: "row" },
-          
+          marginBottom: "50px"
         
         }}
       >
@@ -63,6 +63,7 @@ const ProductDetail = () => {
             flexDirection: "column",
             justifyContent: "space-between",
             gap: "20px",
+            
           }}
         >
           <Typography fontSize={30}>{state.productById.nombre}</Typography>

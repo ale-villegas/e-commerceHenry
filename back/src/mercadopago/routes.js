@@ -12,12 +12,12 @@ mercadopago.configure({
 
 Mercado_Pago.post("/", async (req, res) => {
 
-   const hola = req.body
+   const carrito = req.body
 
-   const nuevoparray = hola.map(e => {
+   const nuevoparray = carrito.map( item => {
     return {
-                title: e.name,
-                unit_price: e.price * e.quantity,
+                title: item.nombre,
+                unit_price: Number(item.precio * item.quantity),
                 currency_id: "ARS",
                 quantity: 1
     }
@@ -30,8 +30,8 @@ Mercado_Pago.post("/", async (req, res) => {
         const preference = {
             items: nuevoparray,
             back_urls: {
-                "success": "https://glowing-marshmallow-629c31.netlify.app/compraexitosa",
-                "failure": "https://glowing-marshmallow-629c31.netlify.app/",
+                "success": "http://localhost:5173/product-list",
+                "failure": "http://localhost:5173/product-list",
                 "pending": ""
             },
             auto_return: "approved",

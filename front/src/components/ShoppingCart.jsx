@@ -59,10 +59,10 @@ dispatch({
  const Funcioncomprar = async () => {
 
   
-    const response = await axios.post("http://localhost:4000/Mercado_Pago", state.cartItems
+    const response = await axios.post("http://localhost:4000/Mercado_pago", state.cartItems
     )
     
-    
+    console.log(response.data)
     window.location.href = response.data
 
     console.log(response)

@@ -24,7 +24,7 @@ const Nav = ({themeOption, handleChangeTheme}) => {
 
  const {isAuthenticated, isLoading, loginWithRedirect, logout, user} = useContext(GlobalContext)
 
-  
+ 
 
   // Función para cerrar el menú
   const handleClose = () => {
@@ -53,7 +53,7 @@ const Nav = ({themeOption, handleChangeTheme}) => {
         </IconButton>
         <IconButton
           component={Link}
-          to="/home"
+          to="/product-list"
           sx={{
             fontSize: "16px",
             borderRadius: "5px"}}

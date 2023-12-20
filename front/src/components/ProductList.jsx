@@ -8,17 +8,26 @@ import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 
 import {
+  Alert,
   FormControl,
   InputLabel,
   MenuItem,
   Select,
+  Snackbar,
   Typography,
 } from "@mui/material";
+import { useLocation, useParams } from "react-router-dom";
 
 const ProductList = () => {
   const { state, dispatch, user } = useContext(GlobalContext);
+  const [open, setOpen] = useState(false);
+  const { search } = useLocation();
+  const queryParams = new URLSearchParams(search);
 
+  const collectionId = queryParams.get('collection_id');
+  const collectionStatus = queryParams.get('collection_status'); 
 
+  console.log(collectionId, collectionStatus)
   const [filter, setFilter] = useState(0);
 
   const handleChange = (event) => {
@@ -66,8 +75,18 @@ const ProductList = () => {
         payload: response,
       });
     },
-    [filter, dispatch]
-  );
+    [filter, dispatch] 
+
+  ); 
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
 
   useEffect(() => {
     fetchData();
@@ -76,10 +95,21 @@ const ProductList = () => {
 
 
   useEffect(() => {
-    dispatch({
-      type: ACTION_TYPES.SET_LOCAL_STORAGE,
-    });
+
+    if(collectionStatus){
+      dispatch({
+        type: ACTION_TYPES.EMPTY_CART
+      }) 
+      setOpen(true)
+    }else{
+      dispatch({
+        type: ACTION_TYPES.SET_LOCAL_STORAGE,
+      });
+    }
+   
   }, [user]);
+
+
 
   return (
     <Box
@@ -151,12 +181,21 @@ const ProductList = () => {
           gridTemplateColumns: "repeat(auto-fill, minmax(345px, 1fr))",
           gap: "20px",
           marginTop: "35px",
+          marginBottom: "50px",
+          minHeight: "100vh"
         }}
       >
         {state.allProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
-      </Box>
+      </Box> 
+
+      
+  <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+  <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+Tu compra fue exitosa.
+  </Alert>
+</Snackbar>
     </Box>
   );
 };

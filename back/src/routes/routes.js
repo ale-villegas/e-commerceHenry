@@ -11,6 +11,7 @@ router.get('/categorias', getCategorias)
 
 
 
+
 module.exports = router
 
 //ToDo: reemplazar las funciones flechas por los servicios correspondientes
